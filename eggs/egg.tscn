@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3fcrwlawsv0n"]
+
+[ext_resource type="Texture2D" uid="uid://tgyxbhg4smts" path="res://eggs/egg_chicken.png" id="1_0dvpc"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_ghotn"]
+[ext_resource type="Script" path="res://eggs/egg.gd" id="1_hr686"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gkk4"]
+resource_local_to_scene = true
+shader = ExtResource("1_ghotn")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = Color(0.976471, 0.760784, 0.168627, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bbs3"]
+size = Vector2(16, 16)
+
+[node name="Egg" type="Node2D" groups=["interactable"]]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_6gkk4")
+script = ExtResource("1_hr686")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("1_0dvpc")
+offset = Vector2(0, -5)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_4bbs3")
+
+[node name="FreeTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="FreeTimer" to="." method="_on_timer_timeout"]

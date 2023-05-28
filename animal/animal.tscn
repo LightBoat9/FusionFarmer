@@ -1,0 +1,129 @@
+[gd_scene load_steps=12 format=3 uid="uid://btgi8j3nkq7aa"]
+
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_ospln"]
+[ext_resource type="Script" path="res://animal/animal.gd" id="2_twwsv"]
+[ext_resource type="Texture2D" uid="uid://0lxykwkk4ag3" path="res://animal/body_parts/pig/pig_body.png" id="2_y8adg"]
+[ext_resource type="Texture2D" uid="uid://mkhem7u0to7s" path="res://animal/shadow.png" id="3_gme75"]
+[ext_resource type="Texture2D" uid="uid://e2v656gtrnqn" path="res://animal/body_parts/chicken/chicken_head.png" id="4_pxmrd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3aik7"]
+resource_local_to_scene = true
+shader = ExtResource("1_ospln")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = Color(0.984314, 1, 0.52549, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rrn4p"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n7yk"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_pr2ke"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteBody:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteHead:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jhba0"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteBody:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteHead:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ml3df"]
+_data = {
+"RESET": SubResource("Animation_pr2ke"),
+"idle": SubResource("Animation_jhba0")
+}
+
+[node name="Animal" type="CharacterBody2D" groups=["animals", "interactable"]]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_3aik7")
+collision_layer = 0
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("2_twwsv")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("3_gme75")
+offset = Vector2(0, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_rrn4p")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8n7yk")
+
+[node name="SpriteBody" type="Sprite2D" parent="."]
+y_sort_enabled = true
+use_parent_material = true
+texture = ExtResource("2_y8adg")
+offset = Vector2(0, -8)
+hframes = 2
+
+[node name="SpriteHead" type="Sprite2D" parent="."]
+y_sort_enabled = true
+use_parent_material = true
+texture = ExtResource("4_pxmrd")
+offset = Vector2(2, -6)
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ml3df")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="EggTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="EggTimer" to="." method="_on_egg_timer_timeout"]

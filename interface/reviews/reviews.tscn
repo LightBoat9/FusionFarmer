@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsfi5p1vcrx40"]
+
+[ext_resource type="Script" path="res://interface/reviews/reviews.gd" id="1_pfjvb"]
+[ext_resource type="Texture2D" uid="uid://df83u8ih58pws" path="res://interface/panels/review_scaled.png" id="2_ah6qn"]
+[ext_resource type="Texture2D" uid="uid://bltg6wdn3ygyl" path="res://interface/reviews/review_star_empty.png" id="2_vs0rv"]
+[ext_resource type="FontFile" uid="uid://d0tl7mqw2pq4x" path="res://interface/fonts/m5x7.ttf" id="3_2502k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kpcdh"]
+font = ExtResource("3_2502k")
+font_size = 64
+font_color = Color(0.976471, 0.760784, 0.168627, 1)
+outline_size = 12
+outline_color = Color(0.180392, 0.133333, 0.184314, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1jhc7"]
+content_margin_top = 16.0
+texture = ExtResource("2_ah6qn")
+texture_margin_left = 16.0
+texture_margin_top = 41.0
+texture_margin_right = 36.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_x1anj"]
+font = ExtResource("3_2502k")
+font_size = 64
+font_color = Color(0.180392, 0.133333, 0.184314, 1)
+
+[node name="Reviews" type="VBoxContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 64.0
+grow_horizontal = 0
+script = ExtResource("1_pfjvb")
+
+[node name="HB" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="HB" type="HBoxContainer" parent="HB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="HB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="HB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="ReviewLabel" type="Label" parent="HB" groups=["review_labels"]]
+layout_mode = 2
+text = "(0)"
+label_settings = SubResource("LabelSettings_kpcdh")
+horizontal_alignment = 2
+
+[node name="ReviewText" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1jhc7")
+
+[node name="VB" type="VBoxContainer" parent="ReviewText"]
+layout_mode = 2
+theme_override_constants/separation = -10
+
+[node name="HB" type="HBoxContainer" parent="ReviewText/VB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="ReviewText/VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="ReviewText/VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="ReviewText/VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="ReviewText/VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="ReviewText/VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_vs0rv")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ReviewText/VB"]
+layout_mode = 2
+text = "Average"
+label_settings = SubResource("LabelSettings_x1anj")
+horizontal_alignment = 2
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="TextTimer" to="." method="_on_text_timer_timeout"]

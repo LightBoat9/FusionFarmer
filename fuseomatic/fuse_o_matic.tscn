@@ -1,0 +1,117 @@
+[gd_scene load_steps=17 format=3 uid="uid://blydvt5ictpfx"]
+
+[ext_resource type="Script" path="res://fuseomatic/fuse_o_matic.gd" id="1_4doj2"]
+[ext_resource type="Texture2D" uid="uid://d3icj6mb70b5d" path="res://fuseomatic/fuseomatic.png" id="1_ghrjs"]
+[ext_resource type="Texture2D" uid="uid://dsecx2f811ryy" path="res://fuseomatic/fuseomatic_slot_red.png" id="2_cpssv"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="2_ycmay"]
+[ext_resource type="Script" path="res://fuseomatic/input.gd" id="3_3jo12"]
+[ext_resource type="Texture2D" uid="uid://beintmbllteo1" path="res://fuseomatic/fuseomatic_slot_blue.png" id="3_nbghy"]
+[ext_resource type="Texture2D" uid="uid://cswa7usjqh2vx" path="res://fuseomatic/fuseomatic_slot_purple.png" id="4_gi1r7"]
+[ext_resource type="Script" path="res://fuseomatic/output.gd" id="6_8a7qm"]
+[ext_resource type="AudioStream" uid="uid://dfw4gfylh7kla" path="res://audio/fuse.wav" id="9_ye0dw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2jh1"]
+size = Vector2(82, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31ykf"]
+size = Vector2(16, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h41uy"]
+shader = ExtResource("2_ycmay")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = Color(0.984314, 1, 0.52549, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrbkg"]
+size = Vector2(24, 24)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7nv81"]
+shader = ExtResource("2_ycmay")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = Color(0.984314, 1, 0.52549, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27e8t"]
+shader = ExtResource("2_ycmay")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = Color(0.984314, 1, 0.52549, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hfxp"]
+shader = ExtResource("2_ycmay")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = null
+
+[node name="FuseOMatic" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_4doj2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -10)
+texture = ExtResource("1_ghrjs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_w2jh1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_31ykf")
+
+[node name="InputRed" type="Node2D" parent="." groups=["interactable"]]
+material = SubResource("ShaderMaterial_h41uy")
+position = Vector2(-33, -1)
+script = ExtResource("3_3jo12")
+
+[node name="Sprite2D" type="Sprite2D" parent="InputRed"]
+use_parent_material = true
+position = Vector2(0, -1)
+texture = ExtResource("2_cpssv")
+
+[node name="Area2D" type="Area2D" parent="InputRed"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputRed/Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_yrbkg")
+
+[node name="InputBlue" type="Node2D" parent="." groups=["interactable"]]
+material = SubResource("ShaderMaterial_7nv81")
+position = Vector2(33, -1)
+script = ExtResource("3_3jo12")
+
+[node name="Sprite2D" type="Sprite2D" parent="InputBlue"]
+use_parent_material = true
+position = Vector2(0, -1)
+texture = ExtResource("3_nbghy")
+
+[node name="Area2D" type="Area2D" parent="InputBlue"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputBlue/Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_yrbkg")
+
+[node name="Output" type="Node2D" parent="." groups=["interactable"]]
+material = SubResource("ShaderMaterial_27e8t")
+position = Vector2(0, 18)
+script = ExtResource("6_8a7qm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Output"]
+material = SubResource("ShaderMaterial_7hfxp")
+use_parent_material = true
+texture = ExtResource("4_gi1r7")
+
+[node name="Area2D" type="Area2D" parent="Output"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Output/Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_yrbkg")
+
+[node name="AudioFuse" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ye0dw")
+
+[connection signal="holding_changed" from="InputRed" to="." method="_on_input_red_holding_changed"]
+[connection signal="holding_changed" from="InputBlue" to="." method="_on_input_blue_holding_changed"]

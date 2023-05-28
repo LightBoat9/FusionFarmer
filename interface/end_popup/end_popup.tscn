@@ -1,0 +1,170 @@
+[gd_scene load_steps=16 format=3 uid="uid://0376yfpegvo6"]
+
+[ext_resource type="Texture2D" uid="uid://cpytq4unhqycf" path="res://interface/panels/basic_scaled.png" id="1_4u1sg"]
+[ext_resource type="Script" path="res://interface/end_popup/end_popup.gd" id="2_craxv"]
+[ext_resource type="Texture2D" uid="uid://bltg6wdn3ygyl" path="res://interface/reviews/review_star_empty.png" id="2_xv5rb"]
+[ext_resource type="FontFile" uid="uid://d0tl7mqw2pq4x" path="res://interface/fonts/m5x7.ttf" id="3_24v3r"]
+[ext_resource type="Texture2D" uid="uid://cqdx35pufkvqj" path="res://interface/panels/button_normal_scaled.png" id="4_gsyra"]
+[ext_resource type="Texture2D" uid="uid://b3n2f5w2ceegu" path="res://interface/panels/button_hover_scaled.png" id="5_dpn3q"]
+[ext_resource type="AudioStream" uid="uid://dmy4bnn23c3gf" path="res://audio/chaching.wav" id="7_ksivb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uw28"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+texture = ExtResource("1_4u1sg")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_in0p3"]
+font = ExtResource("3_24v3r")
+font_size = 64
+font_color = Color(0.180392, 0.133333, 0.184314, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ra15u"]
+texture = ExtResource("4_gsyra")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3mlbd"]
+texture = ExtResource("5_dpn3q")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cgarl"]
+load_path = "res://.godot/imported/button_normal_scaled.png-c55a5c4411563b09e779b375978f00c0.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p5o0v"]
+texture = SubResource("CompressedTexture2D_cgarl")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpla3"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.976471, 0.760784, 0.168627, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwucc"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.976471, 0.760784, 0.168627, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="EndPopup" type="PanelContainer" groups=["end_popup"]]
+process_mode = 3
+custom_minimum_size = Vector2(512, 432)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4uw28")
+script = ExtResource("2_craxv")
+
+[node name="VB" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="VB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_xv5rb")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_xv5rb")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_xv5rb")
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_xv5rb")
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_xv5rb")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VB"]
+layout_mode = 2
+text = "Average"
+label_settings = SubResource("LabelSettings_in0p3")
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="VB"]
+layout_mode = 2
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_colors/font_pressed_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_colors/font_hover_color = Color(0.384314, 0.333333, 0.396078, 1)
+theme_override_colors/font_focus_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.384314, 0.333333, 0.396078, 1)
+theme_override_fonts/font = ExtResource("3_24v3r")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_ra15u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3mlbd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p5o0v")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hpla3")
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="VB"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_colors/font_pressed_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_colors/font_hover_color = Color(0.384314, 0.333333, 0.396078, 1)
+theme_override_colors/font_focus_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.384314, 0.333333, 0.396078, 1)
+theme_override_fonts/font = ExtResource("3_24v3r")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_ra15u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3mlbd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p5o0v")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wwucc")
+text = "Main Menu"
+
+[node name="AudioChaChing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ksivb")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VB/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="VB/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

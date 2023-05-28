@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://laa2xfygjxoa"]
+
+[ext_resource type="Texture2D" uid="uid://nnu3xctis62i" path="res://interface/cash/cash.png" id="1_0fsfn"]
+[ext_resource type="FontFile" uid="uid://d0tl7mqw2pq4x" path="res://interface/fonts/m5x7.ttf" id="2_3aco2"]
+[ext_resource type="PackedScene" uid="uid://bsfi5p1vcrx40" path="res://interface/reviews/reviews.tscn" id="3_dpeok"]
+[ext_resource type="Script" path="res://interface/money_label.gd" id="3_mdnmy"]
+[ext_resource type="PackedScene" uid="uid://0376yfpegvo6" path="res://interface/end_popup/end_popup.tscn" id="4_1yw8r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0w1xf"]
+font = ExtResource("2_3aco2")
+font_size = 64
+font_color = Color(0.568627, 0.858824, 0.411765, 1)
+outline_size = 12
+outline_color = Color(0.0862745, 0.352941, 0.298039, 1)
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VB" type="VBoxContainer" parent="Margin"]
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 64.0
+
+[node name="HB" type="HBoxContainer" parent="Margin/VB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="Margin/VB/HB"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_0fsfn")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Margin/VB/HB" groups=["money_labels"]]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_0w1xf")
+script = ExtResource("3_mdnmy")
+
+[node name="Reviews" parent="Margin" instance=ExtResource("3_dpeok")]
+layout_mode = 1
+offset_left = -296.0
+offset_bottom = 54.0
+
+[node name="EndPopup" parent="." instance=ExtResource("4_1yw8r")]
+visible = false
+layout_mode = 1
+offset_left = -256.0
+offset_top = -216.0
+offset_right = 256.0
+offset_bottom = 216.0

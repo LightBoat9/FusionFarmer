@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddyhmul3os2h0"]
+
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_07i2j"]
+[ext_resource type="Script" path="res://tractor/trailer.gd" id="2_h81cq"]
+[ext_resource type="Texture2D" uid="uid://byba604m1c4ra" path="res://tractor/trailer.png" id="3_5ctk1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dah1k"]
+resource_local_to_scene = true
+shader = ExtResource("1_07i2j")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = Color(0.976471, 0.760784, 0.168627, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vyq8d"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42gak"]
+size = Vector2(32, 23)
+
+[node name="Trailer" type="StaticBody2D" groups=["interactable"]]
+visible = false
+material = SubResource("ShaderMaterial_dah1k")
+position = Vector2(-36, 0)
+script = ExtResource("2_h81cq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_5ctk1")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_vyq8d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 4.5)
+shape = SubResource("RectangleShape2D_42gak")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

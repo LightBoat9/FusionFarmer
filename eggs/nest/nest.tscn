@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8u4kd0bb4341"]
+
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_4pewy"]
+[ext_resource type="Script" path="res://eggs/nest/nest.gd" id="1_oywby"]
+[ext_resource type="Texture2D" uid="uid://cpte8kadxyfif" path="res://eggs/nest/nest.png" id="1_uhf5c"]
+[ext_resource type="Texture2D" uid="uid://c6cky6476bxdx" path="res://interface/panels/progress.png" id="4_ppnxu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gj7m7"]
+resource_local_to_scene = true
+shader = ExtResource("1_4pewy")
+shader_parameter/outlineVisible = false
+shader_parameter/outlineColor = Color(0.976471, 0.760784, 0.168627, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmrkm"]
+size = Vector2(24, 24)
+
+[node name="Nest" type="Node2D" groups=["interactable"]]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_gj7m7")
+script = ExtResource("1_oywby")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+use_parent_material = true
+position = Vector2(0, -3)
+texture = ExtResource("1_uhf5c")
+offset = Vector2(0, 2)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jmrkm")
+
+[node name="NestTimer" type="Timer" parent="."]
+wait_time = 60.0
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Node2D"]
+visible = false
+offset_left = -12.0
+offset_top = -15.0
+offset_right = 12.0
+offset_bottom = -12.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 1
+stretch_margin_top = 1
+stretch_margin_right = 1
+stretch_margin_bottom = 1
+texture_progress = ExtResource("4_ppnxu")
+
+[connection signal="timeout" from="NestTimer" to="." method="_on_nest_timer_timeout"]

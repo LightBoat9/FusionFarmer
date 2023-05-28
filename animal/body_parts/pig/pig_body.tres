@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BodyPart" load_steps=3 format=3 uid="uid://blom17xqmmuog"]
+
+[ext_resource type="Script" path="res://animal/body_parts/body_part.gd" id="1_42nao"]
+[ext_resource type="Texture2D" uid="uid://0lxykwkk4ag3" path="res://animal/body_parts/pig/pig_body.png" id="2_344c2"]
+
+[resource]
+script = ExtResource("1_42nao")
+sprite = ExtResource("2_344c2")
+anchor = Vector2(28, 26)
+part_type = 0
