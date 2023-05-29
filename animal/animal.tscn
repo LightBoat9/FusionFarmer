@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://btgi8j3nkq7aa"]
 
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_ospln"]
-[ext_resource type="Script" path="res://animal/animal.gd" id="2_twwsv"]
 [ext_resource type="Texture2D" uid="uid://0lxykwkk4ag3" path="res://animal/body_parts/pig/pig_body.png" id="2_y8adg"]
+[ext_resource type="Script" path="res://animal/animal.gd" id="2_ycj7k"]
 [ext_resource type="Texture2D" uid="uid://mkhem7u0to7s" path="res://animal/shadow.png" id="3_gme75"]
 [ext_resource type="Texture2D" uid="uid://e2v656gtrnqn" path="res://animal/body_parts/chicken/chicken_head.png" id="4_pxmrd"]
 
@@ -85,7 +85,7 @@ material = SubResource("ShaderMaterial_3aik7")
 collision_layer = 0
 collision_mask = 5
 motion_mode = 1
-script = ExtResource("2_twwsv")
+script = ExtResource("2_ycj7k")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture = ExtResource("3_gme75")

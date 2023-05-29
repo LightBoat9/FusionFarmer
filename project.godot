@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://managers/global.gd"
+SongManager="*res://managers/song_manager.tscn"
 
 [display]
 

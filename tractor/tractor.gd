@@ -127,9 +127,9 @@ func set_mode(value: Mode) -> void:
 		thought_sell.visible = false
 		thoughtbox.size = Vector2()
 		if buy_animals.size() == 1:
-			progress_timer.start(30)
+			progress_timer.start(20)
 		else:
-			progress_timer.start(buy_animals.size() * 20)
+			progress_timer.start(buy_animals.size() * 15)
 		thoughtbox.position = Vector2()
 		thoughtbox.handle_movement(0, true)
 		thoughtbox.visible = true
@@ -166,9 +166,9 @@ func set_mode(value: Mode) -> void:
 			_is_buy = not _is_buy
 			set_mode(Mode.ENTER)
 	elif mode == Mode.SELL:
-		if Global.turn_cycyle < 4:
+		if Global.turn_cycyle < 3:
 			sell_cost = 5
-		elif Global.turn_cycyle < 8:
+		elif Global.turn_cycyle < 6:
 			sell_cost = 10
 		else:
 			sell_cost = 15
@@ -178,7 +178,7 @@ func set_mode(value: Mode) -> void:
 		thought_buy.visible = false
 		thought_sell.visible = true
 		thoughtbox.size = Vector2()
-		progress_timer.start(20)
+		progress_timer.start(15)
 		thoughtbox.position = Vector2()
 		thoughtbox.handle_movement(0, true)
 		thoughtbox.visible = true
@@ -189,9 +189,9 @@ func _set_random_buy() -> void:
 	buy_animals = []
 	
 	var buy_count = 1
-	if Global.turn_cycyle < 4:
+	if Global.turn_cycyle < 3:
 		buy_count = 1
-	elif Global.turn_cycyle < 8:
+	elif Global.turn_cycyle < 6:
 		buy_count = 2
 	else:
 		buy_count = 3

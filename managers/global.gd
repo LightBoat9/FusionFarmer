@@ -5,7 +5,7 @@ signal review_added
 
 
 var turn_cycyle: int = 0
-var max_cycle: int = 1
+var max_cycle: int = 8
 var money: int = 0 : set = set_money
 var reviews: Array = []
 	

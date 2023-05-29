@@ -295,3 +295,4 @@ stream = ExtResource("8_8qw0h")
 
 [node name="AudioStep" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_atyqs")
+volume_db = 2.0

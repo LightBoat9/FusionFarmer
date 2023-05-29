@@ -112,6 +112,7 @@ shape = SubResource("RectangleShape2D_yrbkg")
 
 [node name="AudioFuse" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_ye0dw")
+volume_db = -8.0
 
 [connection signal="holding_changed" from="InputRed" to="." method="_on_input_red_holding_changed"]
 [connection signal="holding_changed" from="InputBlue" to="." method="_on_input_blue_holding_changed"]
